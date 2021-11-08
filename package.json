@@ -1,0 +1,19 @@
+{
+    "name": "com.bhik95.region-system",
+    "version": "0.0.1",
+    "displayName": "Region System",
+    "description": "Utilities for partitioning the space and navigating on a graph",
+    "unity": "2020.3",
+    "unityRelease": "21f1",
+    "documentationUrl": "---",
+    "changelogUrl": "---",
+    "licensesUrl": "---",
+    "dependencies": {
+
+    },
+    "keywords": [],
+    "author": {
+        "name": "Francesco Frassineti",
+        "url": "https://francesco-frassineti-portfolio.web.app/"
+    }
+}
