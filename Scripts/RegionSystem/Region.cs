@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// This class represents a Region of the RegionSystem. A region is an area of the world grid where each tile is

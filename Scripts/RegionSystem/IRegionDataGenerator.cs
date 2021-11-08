@@ -1,4 +1,4 @@
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// This interface defines the methods to generate the game-specific data associated with the region.

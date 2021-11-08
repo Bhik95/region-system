@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// This class keeps track of all the links between regions and provides utility methods to navigate

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Priority_Queue;
 
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     /// <summary>
     /// Class to be used to perform common operations on graphs such as search, expansion (BFS), and more (TO UPDATE)

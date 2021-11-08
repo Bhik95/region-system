@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Bhik95.Utility.Grids
+namespace Bhik95.Grids
 {
     public class BasicGridXZ<T> : IGridXZ<T>
     {

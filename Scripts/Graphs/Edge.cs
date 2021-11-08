@@ -1,4 +1,4 @@
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     /// <summary>
     /// This struct represents an edge between two nodes of a graph. Each node is of type TNode and each edge stores

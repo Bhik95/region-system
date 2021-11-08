@@ -1,4 +1,4 @@
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     public enum RegionLinkDirection
     {

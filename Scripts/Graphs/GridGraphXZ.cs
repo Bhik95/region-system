@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Bhik95.Utility.Grids;
+using Bhik95.Grids;
 using UnityEngine;
 
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     public enum ExpansionType
     {

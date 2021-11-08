@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Bhik95.Utility.Grids
+namespace Bhik95.Grids
 {
     /// <summary>
     /// Utility class used to quickly and repeatedly convert beetween an IGridXZ grid and world coordinates

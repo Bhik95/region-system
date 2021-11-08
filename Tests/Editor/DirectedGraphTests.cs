@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Bhik95.Utility.Graph.Tests
+namespace Bhik95.Graph.Tests
 {
     public class DirectedGraphTests
     {

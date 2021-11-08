@@ -1,6 +1,6 @@
 using System;
 
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     /// <summary>
     /// Helper class storing the relevant information for graph search algorithms in the GraphOperations class

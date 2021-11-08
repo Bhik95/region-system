@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     /// <summary>
     /// This class represents a directed graph where each node can be connected to another distinct node of the graph

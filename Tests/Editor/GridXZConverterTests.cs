@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Bhik95.Utility.Grids.Tests
+namespace Bhik95.Grids.Tests
 {
     public class GridXZConverterTests
     {

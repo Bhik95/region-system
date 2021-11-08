@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// This class represents a link between two adjacent regions of the world.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bhik95.Utility.Grids
+namespace Bhik95.Grids
 {
     public interface IGridXZ<T>
     {

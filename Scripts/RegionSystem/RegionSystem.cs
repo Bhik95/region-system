@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bhik95.Utility.Graph;
-using Bhik95.Utility.Grids;
+using Bhik95.Graph;
+using Bhik95.Grids;
 using UnityEngine;
 
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// This class represents the RegionSystem. The world grid is partitioned into rectangular chunks of a given size.

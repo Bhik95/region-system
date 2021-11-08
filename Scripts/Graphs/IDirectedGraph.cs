@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Bhik95.Utility.Graph
+namespace Bhik95.Graph
 {
     public interface IDirectedGraph<TNode, TEdgeData>
     {

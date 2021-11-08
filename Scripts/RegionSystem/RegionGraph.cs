@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Bhik95.Utility.Graph;
+using Bhik95.Graph;
 using UnityEngine;
 
-namespace Bhik95.Utility.RegionSystem
+namespace Bhik95.RegionSystem
 {
     /// <summary>
     /// Graph representing the connectivity between different regions of the world. Each node is a Vector2Int representing

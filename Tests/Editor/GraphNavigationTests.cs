@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using Bhik95.Utility.Grids;
+using Bhik95.Grids;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Bhik95.Utility.Graph.Tests
+namespace Bhik95.Graph.Tests
 {
     public class GraphNavigationTests
     {

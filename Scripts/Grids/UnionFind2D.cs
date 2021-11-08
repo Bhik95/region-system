@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bhik95.Utility.Grids
+namespace Bhik95.Grids
 {
     /// <summary>
     /// This class represents a Union-Find data structure to store a collection of disjoints (non-overlapping) regions
