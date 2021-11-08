@@ -1,10 +1,10 @@
 {
-    "name": "storie.utility2.tests",
+    "name": "com.bhik95.region-system.tests.editor",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "storie.utility2"
+        "com.bhik95.region-system"
     ],
     "includePlatforms": [
         "Editor"
