@@ -1,0 +1,16 @@
+{
+    "name": "com.bhik95.region-system.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d87349629f54cc44db0bc7a40034cd23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
