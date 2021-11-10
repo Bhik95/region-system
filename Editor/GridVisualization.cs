@@ -1,15 +1,18 @@
+#if UNITY_EDITOR
+
 using System;
 using Bhik95.Grids;
 using UnityEngine;
+
 using UnityEditor;
 
 namespace Bhik95.RegionSystem.Editor
 {
     public static class GridVisualization
     {
-        public static void ShowGridAsGizmosBool(IGridXZ<bool> gridXZ, GridXZCoordinateConverter coordinateConverter, Color trueColor, Color falseColor)
+        public static void ShowGridAsGizmosBool(IGridXZ<bool> gridXZ, GridXZCoordinateConverter coordinateConverter, Color trueColor, Color falseColor, float innerAlpha = 0.5f)
         {
-            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, 0.1f, coordinateConverter.CellSize.y);
+            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, coordinateConverter.CellSize.y, 0.1f);
             
             for (int ix = 0; ix < gridXZ.GridSize.x; ix++)
             {
@@ -20,14 +23,16 @@ namespace Bhik95.RegionSystem.Editor
                     Gizmos.color = gridXZ[gridPosition]
                         ? trueColor
                         : falseColor;
+                    Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
+                    Gizmos.color = Gizmos.color * innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
         }
         
-        public static void ShowGridAsGizmosFloat(IGridXZ<float> gridXZ, GridXZCoordinateConverter coordinateConverter, Gradient gradient)
+        public static void ShowGridAsGizmosFloat(IGridXZ<float> gridXZ, GridXZCoordinateConverter coordinateConverter, Gradient gradient, float innerAlpha = 0.5f)
         {
-            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, 0.1f, coordinateConverter.CellSize.y);
+            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, coordinateConverter.CellSize.y, 0.1f);
             
             for (int ix = 0; ix < gridXZ.GridSize.x; ix++)
             {
@@ -36,6 +41,8 @@ namespace Bhik95.RegionSystem.Editor
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
                     Vector2 worldPosition = coordinateConverter.GridToWorld(gridPosition, Vector2.zero);
                     Gizmos.color = gradient.Evaluate(gridXZ[gridPosition]);
+                    Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
+                    Gizmos.color = Gizmos.color * innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
@@ -57,5 +64,4 @@ namespace Bhik95.RegionSystem.Editor
     }
 }
 
-
-
+#endif
