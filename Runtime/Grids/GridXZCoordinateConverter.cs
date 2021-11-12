@@ -57,16 +57,17 @@ namespace Bhik95.Grids
                    && worldPositionX <= topRightCorner.x
                    && worldPositionZ <= topRightCorner.y;
         }
-        
+
         /// <summary>
         /// Converts a position in world-space into a position in grid-space
         /// </summary>
         /// <param name="worldPosition">The world position</param>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <returns>The grid position</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public Vector2Int WorldToGrid(Vector2 worldPosition)
+        public Vector2Int WorldToGrid(Vector2 worldPosition, bool allowOutOfBounds = false)
         {
-            if (!IsWorldPosWithinBounds(worldPosition))
+            if (!allowOutOfBounds && !IsWorldPosWithinBounds(worldPosition))
                 throw new ArgumentOutOfRangeException($"Parameter {nameof(worldPosition)} is out of range: {worldPosition}");
                 
             return Vector2Int.FloorToInt((worldPosition - _lowerLeftCorner) / _cellSize);
@@ -77,9 +78,10 @@ namespace Bhik95.Grids
         /// </summary>
         /// <param name="worldPositionX">The x coordinate of the world position</param>
         /// <param name="worldPositionZ">The z coordinate of the world position</param>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <returns>The grid position</returns>
-        public Vector2Int WorldToGrid(float worldPositionX, float worldPositionZ)
-            => WorldToGrid(new Vector2(worldPositionX, worldPositionZ));
+        public Vector2Int WorldToGrid(float worldPositionX, float worldPositionZ, bool allowOutOfBounds = false)
+            => WorldToGrid(new Vector2(worldPositionX, worldPositionZ), allowOutOfBounds);
 
         /// <summary>
         /// Converts a position in grid-space into a position in world-space
@@ -89,14 +91,18 @@ namespace Bhik95.Grids
         /// selected cell. For example, (0f,0f) represents the lower-left corner, (0.5f, 0.5f) represents the center of
         /// the selected cell, while (1.0f, 1.0f) represents the top-right corner.</param>
         /// <returns>The world position</returns>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public Vector2 GridToWorld(Vector2Int gridPosition, Vector2 cellPosition)
+        public Vector2 GridToWorld(Vector2Int gridPosition, Vector2 cellPosition, bool allowOutOfBounds = false)
         {
-            if (gridPosition.x < 0 || gridPosition.x >= _gridSize.x || gridPosition.y < 0 || gridPosition.y >= _gridSize.y)
-                throw new ArgumentOutOfRangeException(nameof(gridPosition));
-            if (cellPosition.x < 0f || cellPosition.x > 1f || cellPosition.y < 0 || cellPosition.y > 1f)
-                throw new ArgumentOutOfRangeException($"Parameter {nameof(cellPosition)} is expected in [0;1]x[0;1]. Actual value: {cellPosition}");
-            
+            if (!allowOutOfBounds)
+            {
+                if (gridPosition.x < 0 || gridPosition.x >= _gridSize.x || gridPosition.y < 0 || gridPosition.y >= _gridSize.y)
+                    throw new ArgumentOutOfRangeException(nameof(gridPosition));
+                if (cellPosition.x < 0f || cellPosition.x > 1f || cellPosition.y < 0 || cellPosition.y > 1f)
+                    throw new ArgumentOutOfRangeException($"Parameter {nameof(cellPosition)} is expected in [0;1]x[0;1]. Actual value: {cellPosition}");
+            }
+
             return _lowerLeftCorner + (gridPosition + cellPosition) * _cellSize;
         }
 
@@ -109,29 +115,33 @@ namespace Bhik95.Grids
         /// selected cell.</param>
         /// <param name="cellPositionZ">A value in [0;1[ representing the relative z position of a point within the
         /// selected cell.</param>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <returns>The world position</returns>
-        public Vector2 GridToWorld(int gridPositionX, int gridPositionZ, float cellPositionX, float cellPositionZ)
+        public Vector2 GridToWorld(int gridPositionX, int gridPositionZ, float cellPositionX, float cellPositionZ, bool allowOutOfBounds = false)
             => GridToWorld(
                 new Vector2Int(gridPositionX, gridPositionZ),
-                new Vector2(cellPositionX, cellPositionZ)
+                new Vector2(cellPositionX, cellPositionZ),
+                allowOutOfBounds
                 );
 
         /// <summary>
         /// Returns the world position of the center of the cell at the given grid position
         /// </summary>
         /// <param name="gridPosition">The grid position</param>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <returns>The world position of the center of the cell at the given grid position</returns>
-        public Vector2 GridCenterToWorld(Vector2Int gridPosition)
-            => GridToWorld(gridPosition, new Vector2(0.5f, 0.5f));
+        public Vector2 GridCenterToWorld(Vector2Int gridPosition, bool allowOutOfBounds = false)
+            => GridToWorld(gridPosition, new Vector2(0.5f, 0.5f), allowOutOfBounds);
 
         /// <summary>
         /// Returns the world position of the center of the cell at the given grid position
         /// </summary>
         /// <param name="gridPositionX">The x coordinate of the grid position</param>
         /// <param name="gridPositionZ">The z coordinate of the grid position</param>
+        /// <param name="allowOutOfBounds">If true, do not throw an exception if the input is out of bounds</param>
         /// <returns>The world position of the center of the cell at the given grid position</returns>
-        public Vector2 GridCenterToWorld(int gridPositionX, int gridPositionZ)
-            => GridCenterToWorld(new Vector2Int(gridPositionX, gridPositionZ));
+        public Vector2 GridCenterToWorld(int gridPositionX, int gridPositionZ, bool allowOutOfBounds = false)
+            => GridCenterToWorld(new Vector2Int(gridPositionX, gridPositionZ), allowOutOfBounds);
         
         
         /// <summary>
