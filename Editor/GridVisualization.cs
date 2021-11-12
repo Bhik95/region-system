@@ -19,7 +19,7 @@ namespace Bhik95.RegionSystem.Editor
                 for (int iy = 0; iy < gridXZ.GridSize.y; iy++)
                 {
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
-                    Vector2 worldPosition = coordinateConverter.GridToWorld(gridPosition, Vector2.zero);
+                    Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
                     Gizmos.color = gridXZ[gridPosition]
                         ? trueColor
                         : falseColor;
@@ -39,7 +39,7 @@ namespace Bhik95.RegionSystem.Editor
                 for (int iy = 0; iy < gridXZ.GridSize.y; iy++)
                 {
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
-                    Vector2 worldPosition = coordinateConverter.GridToWorld(gridPosition, Vector2.zero);
+                    Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
                     Gizmos.color = gradient.Evaluate(gridXZ[gridPosition]);
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
                     Gizmos.color = Gizmos.color * innerAlpha;
@@ -55,7 +55,7 @@ namespace Bhik95.RegionSystem.Editor
                 for (int iy = 0; iy < gridXZ.GridSize.y; iy++)
                 {
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
-                    Vector2 worldPosition = coordinateConverter.GridToWorld(gridPosition, Vector2.zero);
+                    Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
                     Gizmos.color = Color.white;
                     Handles.Label(worldPosition, gridXZ[gridPosition].ToString());
                 }
