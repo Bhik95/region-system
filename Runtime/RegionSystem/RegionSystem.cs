@@ -20,7 +20,9 @@ namespace Bhik95.RegionSystem
         public UnionFind2D RegionKeys => _regionKeys;
         public Dictionary<Vector2Int, Region<TRegionData>> RegionDict => _regionDict;
         public BasicGridXZ<HashSet<Vector2Int>> RegionsInChunks => _regionsInChunks;
-        
+        public GridGraphXZ<bool> GridGraph => _gridGraph;
+        public BasicGridXZ<bool> OcclusionGrid => _occlusionGrid;
+
         private readonly Vector2Int _gridSize;
         private readonly Vector2Int _chunkSize;
         private readonly Vector2Int _nChunks;
@@ -201,7 +203,6 @@ namespace Bhik95.RegionSystem
                 RemoveRegion(regionKey);
             }
             
-            //TODO: Extract
             for (int ciX = 0; ciX < _chunkSize.x; ciX++)
             {
                 for (int ciY = 0; ciY < _chunkSize.y; ciY++)
