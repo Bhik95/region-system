@@ -25,7 +25,7 @@ namespace Bhik95.RegionSystem.Editor
                         ? trueColor
                         : falseColor;
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
-                    Gizmos.color = Gizmos.color * innerAlpha;
+                    Gizmos.color *= innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
@@ -43,7 +43,7 @@ namespace Bhik95.RegionSystem.Editor
                     Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
                     Gizmos.color = gradient.Evaluate(gridXZ[gridPosition]);
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
-                    Gizmos.color = Gizmos.color * innerAlpha;
+                    Gizmos.color *= innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
@@ -77,7 +77,7 @@ namespace Bhik95.RegionSystem.Editor
                         ? trueColor
                         : falseColor;
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
-                    Gizmos.color = Gizmos.color * innerAlpha;
+                    Gizmos.color *= innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
@@ -106,7 +106,7 @@ namespace Bhik95.RegionSystem.Editor
                         Gizmos.color = Color.black;
                     }
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
-                    Gizmos.color = Gizmos.color * innerAlpha;
+                    Gizmos.color *= innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
