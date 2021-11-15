@@ -40,21 +40,22 @@ namespace Bhik95.RegionSystem
 
         private readonly IRegionDataGenerator<TRegionData> _regionDataGenerator;
 
-        public RegionSystem(Vector2Int gridSize, Vector2Int chunkSize, IRegionDataGenerator<TRegionData> regionDataGenerator)
+        public RegionSystem(BasicGridXZ<bool> occlusionGrid, Vector2Int chunkSize, IRegionDataGenerator<TRegionData> regionDataGenerator)
         {
-            if (gridSize.x <= 0 || gridSize.y <= 0)
-                throw new ArgumentOutOfRangeException(nameof(gridSize));
+            _occlusionGrid = occlusionGrid;
+            _gridSize = occlusionGrid.GridSize;
+            
+            if (_gridSize.x <= 0 || _gridSize.y <= 0)
+                throw new ArgumentOutOfRangeException(nameof(_gridSize));
             if (chunkSize.x <= 0 || chunkSize.y <= 0)
                 throw new ArgumentOutOfRangeException(nameof(chunkSize));
-            if (gridSize.x % chunkSize.x != 0 || gridSize.y % chunkSize.y != 0)
-                throw new ArgumentException($"{nameof(gridSize)} should be multiple of {nameof(chunkSize)}");
-
-            _gridSize = gridSize;
+            if (_gridSize.x % chunkSize.x != 0 || _gridSize.y % chunkSize.y != 0)
+                throw new ArgumentException($"{nameof(_gridSize)} should be multiple of {nameof(chunkSize)}");
+            
             _chunkSize = chunkSize;
             _regionDataGenerator = regionDataGenerator ?? throw new ArgumentNullException(nameof(regionDataGenerator));
             _nChunks = new Vector2Int(_gridSize.x / _chunkSize.x, _gridSize.y / _chunkSize.y);
             
-            _occlusionGrid = new BasicGridXZ<bool>(gridSize);
             _gridGraph = new GridGraphXZ<bool>(_occlusionGrid, ExpansionType.FourDirections);
             _regionKeys = new UnionFind2D(_gridSize);
             _regionDict = new Dictionary<Vector2Int, Region<TRegionData>>();
@@ -65,6 +66,12 @@ namespace Bhik95.RegionSystem
             _regionsInChunks = new BasicGridXZ<HashSet<Vector2Int>>(nChunks);
 
             InitializeRegions();
+        }
+
+        public RegionSystem(Vector2Int gridSize, Vector2Int chunkSize, IRegionDataGenerator<TRegionData> regionDataGenerator)          
+            : this(new BasicGridXZ<bool>(gridSize), chunkSize, regionDataGenerator)
+        {
+            
         }
         
         public bool ArePositionsConnected(Vector2Int positionA, Vector2Int positionB)
