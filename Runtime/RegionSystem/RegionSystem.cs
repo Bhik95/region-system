@@ -83,6 +83,11 @@ namespace Bhik95.RegionSystem
 
             Vector2Int regionKeyA = _regionKeys.FindKey(positionA);
             Vector2Int regionKeyB = _regionKeys.FindKey(positionB);
+
+            if (_regionGraph.ContainsNode(regionKeyA) == false)
+                return false;
+            if (_regionGraph.ContainsNode(regionKeyB) == false)
+                return false;
             
             return GraphOperations.AStarSearch(_regionGraph,
                 regionKeyA,
