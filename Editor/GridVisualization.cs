@@ -49,16 +49,20 @@ namespace Bhik95.RegionSystem.Editor
             }
         }
         
-        public static void ShowGridAsGizmosEnum<T>(IGridXZ<T> gridXZ, GridXZCoordinateConverter coordinateConverter) where T : Enum
+        public static void ShowGridAsGizmosEnum<T>(IGridXZ<T> gridXZ, GridXZCoordinateConverter coordinateConverter, Color[] colors, float innerAlpha = 0.5f) where T : Enum
         {
+            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, coordinateConverter.CellSize.y, 0.1f);
+            
             for (int ix = 0; ix < gridXZ.GridSize.x; ix++)
             {
                 for (int iy = 0; iy < gridXZ.GridSize.y; iy++)
                 {
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
                     Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
-                    Gizmos.color = Color.white;
-                    Handles.Label(worldPosition, gridXZ[gridPosition].ToString());
+                    Gizmos.color = colors[(int)(object)gridXZ[gridPosition]];// Get the Enum Index
+                    Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
+                    Gizmos.color *= innerAlpha;
+                    Gizmos.DrawCube(worldPosition, cubeSize);
                 }
             }
         }
