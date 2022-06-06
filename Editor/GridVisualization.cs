@@ -3,8 +3,6 @@
 using System;
 using Bhik95.Grids;
 using UnityEngine;
-
-using UnityEditor;
 using Random = UnityEngine.Random;
 
 namespace Bhik95.RegionSystem.Editor
@@ -60,6 +58,24 @@ namespace Bhik95.RegionSystem.Editor
                     Vector2Int gridPosition = new Vector2Int(ix, iy);
                     Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
                     Gizmos.color = colors[(int)(object)gridXZ[gridPosition]];// Get the Enum Index
+                    Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
+                    Gizmos.color *= innerAlpha;
+                    Gizmos.DrawCube(worldPosition, cubeSize);
+                }
+            }
+        }
+        
+        public static void ShowGrid<T>(IGridXZ<T> gridXZ, GridXZCoordinateConverter coordinateConverter, Func<T, Color> colorFunction, float innerAlpha = 0.5f)
+        {
+            Vector3 cubeSize = new Vector3(coordinateConverter.CellSize.x, coordinateConverter.CellSize.y, 0.1f);
+            
+            for (int ix = 0; ix < gridXZ.GridSize.x; ix++)
+            {
+                for (int iy = 0; iy < gridXZ.GridSize.y; iy++)
+                {
+                    Vector2Int gridPosition = new Vector2Int(ix, iy);
+                    Vector2 worldPosition = coordinateConverter.GridCenterToWorld(gridPosition);
+                    Gizmos.color = colorFunction(gridXZ[gridPosition]);// Get the Enum Index
                     Gizmos.DrawWireCube(worldPosition, cubeSize - 0.02f * Vector3.one);
                     Gizmos.color *= innerAlpha;
                     Gizmos.DrawCube(worldPosition, cubeSize);
